@@ -1,0 +1,57 @@
+/* Adding custom fonts */
+@font-face {
+    font-family: FasterOne-Regular;
+    src: url(FasterOne-Regular.ttf);
+}
+
+@font-face {
+    font-family: Need-for-Font;
+    src: url(Need-for-Font.ttf);
+}
+
+/* styling body element with background */
+body {
+    background-image: url(../images/asphalt.jpeg);
+    color: antiquewhite;
+}
+
+/* styling for title area */
+.mainTitle {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+#title-1 {
+    font-family: FasterOne-Regular;
+    color: black;
+    font-size: 80px;
+    text-align: left;
+    padding-bottom: 5px;
+    border-bottom: 10px dashed yellow;
+    border-top: 10px solid white;
+
+}
+
+#title-2 {
+    font-family: Need-for-font;
+    color: black;
+    font-size: 36px;
+    text-align: right;
+    padding: 20px;
+    border-bottom: 10px solid white
+}
+
+/* styling for photo area */
+.photoArea {
+    border-left: 10px solid white;
+    border-right: 10px dashed yellow;
+}
+
+/* styling for game stats area */
+.info {
+    border-right: 10px solid white;
+    border-left: 10px dashed yellow;
+    text-align: center;
+}
+
+
