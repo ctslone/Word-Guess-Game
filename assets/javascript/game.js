@@ -15,7 +15,7 @@
 
     // defining variables to be used during the game
     var wins = 0;
-    var guessesLeft = 20;
+    // var guessesLeft = 20;
     var newCar = "";
     var lettersGuessed = [];
     var carNames = [
@@ -63,8 +63,8 @@
                 answerSpace.push ("_")
                 };
         // writing to the various HTML elements to display wins, guesses left and blank spaces for the new word
-        document.getElementById("wins-text").innerHTML = "Wins: " + 0;
-        document.getElementById("guesses-left-text").innerHTML = "Guesses left: " + 20;
+        document.getElementById("wins-text").innerHTML = "Wins: " + wins;
+        document.getElementById("guesses-left-text").innerHTML = "Guesses left: " + guessesLeft;
         document.getElementById("letters-text").innerHTML = [];
         document.getElementById("answer-space").innerHTML = answerSpace.join(" ");
         };
@@ -75,39 +75,51 @@
             var guessedLetter = event.key.toUpperCase();
                 console.log("The user guessed: " + guessedLetter);
             // if user selects a letter they already guessed, dont do anything (ie return)
-
-            // if (guessedLetter.includes(lettersGuessed)) {
+            
+            // if (lettersGuessed.includes(guessedLetter)) {
             //     return;
-            // }
+            // };
 
             // adding guessed letters to the lettersGuessed array
-            if (event.keyCode > 64 && event.keyCode < 91) {
+            // if (event.keyCode > 64 && event.keyCode < 91) {
+                
                 console.log ("User selected an eligible letter");
                 // assigning false to the userGuess by default unless the user guesses a correct letter
-                // var correctGuess = false;
+                var correctGuess = false;
+                
 
                 // looping throught the winning word and checking to see if the user guessed letter matches any of the letters in the word. use charAt
                 for (var i=0; i < newCar.name.length; i++) {
                     // if the guessedletter matches one of the letters in the random new car...
+                    
                     if(guessedLetter === newCar.name.charAt(i)) {
                         console.log("User guessed a correct letter");
                         answerSpace[i] = guessedLetter;
-                        // correctGuess = true;  
+                        correctGuess = true;  
                     }
                 }
                     // pushing the userguess into the guessed letter array and dispaying the guesses on the page
+                    
                     lettersGuessed.push(guessedLetter + " ");
                     document.getElementById("answer-space").innerHTML = answerSpace.join(" ");
                     document.getElementById("letters-text").innerHTML = lettersGuessed;
 
-                if ()
                     
 
-                    
-                    
-                
-                
-            }
+                if (!correctGuess) {
+                    guessesLeft--;
+                    console.log("Guesses left: " + guessesLeft)
+                }
+
+
+
+
+
+
+                document.getElementById("guesses-left-text").innerHTML = "Guesses left: " + guessesLeft;
+
+            // }
+            
         };
     
 newGame()
