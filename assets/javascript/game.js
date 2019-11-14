@@ -15,23 +15,24 @@
 
 // defining variables to be used during the game
 var wins = 0;
+var losses = 0;
 // var guessesLeft = 20;
 var newCar = "";
 var lettersGuessed = [];
 var carNames = [
     {
         name: "WRX",
-        image: "assets/images",
+        image: "./assets/images/wrx.jpg",
     },
 
     {
         name: "PORSCHE",
-        image: "assets/images",
+        image: "./assets/images/porsche.png",
     },
 
     {
         name: "CORVETTE",
-        image: "assets/images",
+        image: "./assets/images/corvette.jpg",
     },
 
     {
@@ -41,15 +42,14 @@ var carNames = [
 
     {
         name: "MUSTANG",
-        image: "assets/images",
+        image: "./assets/images/mustang.jpg",
     },
 
     {
         name: "LAMBORGHINI",
-        image: "assets/images",
+        image: "./assets/images/lambo.jpg",
     }
 ];
-
 // function that runs when the game loads, the user wins or the user runs out of guesses
 function newGame() {
     // declaring variables to be reset at the begininng of new game and used throughout the game
@@ -64,16 +64,15 @@ function newGame() {
     };
     // writing to the various HTML elements to display wins, guesses left and blank spaces for the new word
     document.getElementById("wins-text").innerHTML = "Wins: " + wins;
+    // document.getElementById("loss-text").innerHTML = "Losses: " + losses;
     document.getElementById("guesses-left-text").innerHTML = "Guesses left: " + guessesLeft;
     document.getElementById("letters-text").innerHTML = [];
     document.getElementById("answer-space").innerHTML = answerSpace.join(" ");
 };
 // calling newGame functon on document load
 newGame()
-
 // when user releases a letter key, run this function
 document.onkeyup = function (event) {
-
     // user key press is assigned to variable and made uppercase
     var guessedLetter = event.key.toUpperCase();
     var letterIndex = lettersGuessed.indexOf(guessedLetter)
@@ -85,18 +84,14 @@ document.onkeyup = function (event) {
         alert("That aint no letter fool!")
     }
     else if (letterIndex == (-1)) {
-
         lettersGuessed.push(guessedLetter);
         console.log("The user guessed: " + guessedLetter);
-
         console.log("User selected an eligible letter");
         // assigning false to the userGuess by default unless the user guesses a correct letter
         var correctGuess = false;
-
         // looping through the winning word and checking to see if the user guessed letter matches any of the letters in the word. use charAt
         for (var i = 0; i < newCar.name.length; i++) {
             // if the guessedletter matches one of the letters in the random new car...
-
             if (guessedLetter === newCar.name.charAt(i)) {
                 console.log("User guessed a correct letter");
                 answerSpace[i] = guessedLetter;
@@ -109,27 +104,29 @@ document.onkeyup = function (event) {
             guessesLeft--;
             console.log("Guesses left: " + guessesLeft)
         }
+        if (guessesLeft === 0) {
+            losses++
+            console.log("Total losses: " + losses)
+        }
         // if the user guesess the whole word
         if (answerSpace.join('') === newCar.name) {
             console.log("winner")
             wins++
             console.log(wins)
             document.getElementById("photoArea").src = newCar.image;
-            // newGame()
+            newGame()
         }
         // re-writing elements on the dcument to display the word spaces, letters guessed, guesses left and wins
         document.getElementById("answer-space").innerHTML = answerSpace.join(" ");
         document.getElementById("letters-text").innerHTML = lettersGuessed;
         document.getElementById("guesses-left-text").innerHTML = "Guesses left: " + guessesLeft;
         document.getElementById("wins-text").innerHTML = "Wins: " + wins;
-
+        // document.getElementById("loss-text").innerHTML = "Losses: " + losses;
     }
     else {
         console.log("Guessed that")
         alert("Choose another letter! You already guessed that letter.")
     }
-
-    // if ()
 
 };
 
