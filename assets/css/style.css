@@ -42,9 +42,10 @@ body {
 }
 
 /* styling for photo area */
-.photoArea {
+.photoDiv {
     border-left: 10px solid white;
     border-right: 10px dashed yellow;
+    margin-bottom: 25px;
 }
 
 /* styling for game stats area */
@@ -52,6 +53,7 @@ body {
     border-right: 10px solid white;
     border-left: 10px dashed yellow;
     text-align: center;
+    margin-bottom: 25px;
 }
 
 

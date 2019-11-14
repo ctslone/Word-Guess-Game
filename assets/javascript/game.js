@@ -36,7 +36,7 @@ var carNames = [
 
     {
         name: "FERRARI",
-        image: "assets/images",
+        image: "./assets/images/ferrari.jpg",
     },
 
     {
@@ -73,51 +73,63 @@ newGame()
 
 // when user releases a letter key, run this function
 document.onkeyup = function (event) {
+
     // user key press is assigned to variable and made uppercase
     var guessedLetter = event.key.toUpperCase();
-    lettersGuessed.push(guessedLetter + " ");
-    console.log("The user guessed: " + guessedLetter);
-    // if user selects a letter they already guessed, dont do anything (ie return)
+    var letterIndex = lettersGuessed.indexOf(guessedLetter)
+    console.log(letterIndex)
+    console.log(lettersGuessed)
+    var onlyLetters = /^[a-zA-Z]+$/.test(guessedLetter)
+    console.log(onlyLetters);
+    if (onlyLetters === false) {
+        alert("That aint no letter fool!")
+    }
+    else if (letterIndex == (-1)) {
 
-    // if (lettersGuessed.includes(guessedLetter)) {
-    //     return;
-    // };
+        lettersGuessed.push(guessedLetter);
+        console.log("The user guessed: " + guessedLetter);
 
-    // adding guessed letters to the lettersGuessed array
-    // if (event.keyCode > 64 && event.keyCode < 91) {
+        console.log("User selected an eligible letter");
+        // assigning false to the userGuess by default unless the user guesses a correct letter
+        var correctGuess = false;
 
-    console.log("User selected an eligible letter");
-    // assigning false to the userGuess by default unless the user guesses a correct letter
-    var correctGuess = false;
+        // looping through the winning word and checking to see if the user guessed letter matches any of the letters in the word. use charAt
+        for (var i = 0; i < newCar.name.length; i++) {
+            // if the guessedletter matches one of the letters in the random new car...
 
-    // looping through the winning word and checking to see if the user guessed letter matches any of the letters in the word. use charAt
-    for (var i = 0; i < newCar.name.length; i++) {
-        // if the guessedletter matches one of the letters in the random new car...
-
-        if (guessedLetter === newCar.name.charAt(i)) {
-            console.log("User guessed a correct letter");
-            answerSpace[i] = guessedLetter;
-            console.log(answerSpace.join(''))
-            correctGuess = true;
+            if (guessedLetter === newCar.name.charAt(i)) {
+                console.log("User guessed a correct letter");
+                answerSpace[i] = guessedLetter;
+                console.log(answerSpace.join(''))
+                correctGuess = true;
+            }
         }
+        // if the user guesses wrong
+        if (!correctGuess) {
+            guessesLeft--;
+            console.log("Guesses left: " + guessesLeft)
+        }
+        // if the user guesess the whole word
+        if (answerSpace.join('') === newCar.name) {
+            console.log("winner")
+            wins++
+            console.log(wins)
+            document.getElementById("photoArea").src = newCar.image;
+            // newGame()
+        }
+        // re-writing elements on the dcument to display the word spaces, letters guessed, guesses left and wins
+        document.getElementById("answer-space").innerHTML = answerSpace.join(" ");
+        document.getElementById("letters-text").innerHTML = lettersGuessed;
+        document.getElementById("guesses-left-text").innerHTML = "Guesses left: " + guessesLeft;
+        document.getElementById("wins-text").innerHTML = "Wins: " + wins;
+
     }
-    // if the user guesses wrong
-    if (!correctGuess) {
-        guessesLeft--;
-        console.log("Guesses left: " + guessesLeft)
+    else {
+        console.log("Guessed that")
+        alert("Choose another letter! You already guessed that letter.")
     }
-    // if the user guesess the whole word
-    if (answerSpace.join('') === newCar.name) {
-        console.log("winner")
-        wins++
-        console.log(wins)
-        newGame()
-    }
-    // re-writing elements on the dcument to display the word spaces, letters guessed, guesses left and wins
-    document.getElementById("answer-space").innerHTML = answerSpace.join(" ");
-    document.getElementById("letters-text").innerHTML = lettersGuessed;
-    document.getElementById("guesses-left-text").innerHTML = "Guesses left: " + guessesLeft;
-    document.getElementById("wins-text").innerHTML = "Wins: " + wins;
+
+    // if ()
 
 };
 
