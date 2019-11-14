@@ -24,7 +24,7 @@ body {
 #title-1 {
     font-family: FasterOne-Regular;
     color: rgb(0, 0, 0);
-    font-size: 80px;
+    font-size: 4em;
     text-align: left;
     padding-bottom: 5px;
     border-bottom: 10px dashed yellow;
@@ -35,10 +35,14 @@ body {
 #title-2 {
     font-family: Need-for-font;
     color: black;
-    font-size: 36px;
+    font-size: 1.8em;
     text-align: right;
     padding: 20px;
     border-bottom: 10px solid white
+}
+
+#letters-text {
+    overflow-wrap: break-word;
 }
 
 /* styling for photo area */

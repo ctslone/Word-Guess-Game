@@ -53,7 +53,7 @@ var carNames = [
 // function that runs when the game loads, the user wins or the user runs out of guesses
 function newGame() {
     // declaring variables to be reset at the begininng of new game and used throughout the game
-    guessesLeft = 20;
+    guessesLeft = 10;
     answerSpace = [];
     lettersGuessed = [];
     newCar = carNames[Math.floor(Math.random() * carNames.length)];
@@ -107,6 +107,7 @@ document.onkeyup = function (event) {
         if (guessesLeft === 0) {
             losses++
             console.log("Total losses: " + losses)
+            newGame()
         }
         // if the user guesess the whole word
         if (answerSpace.join('') === newCar.name) {
@@ -114,6 +115,7 @@ document.onkeyup = function (event) {
             wins++
             console.log(wins)
             document.getElementById("photoArea").src = newCar.image;
+            document.getElementById("win-text").innerHTML = "Great job! Now guess the next one!"
             newGame()
         }
         // re-writing elements on the dcument to display the word spaces, letters guessed, guesses left and wins
@@ -127,7 +129,6 @@ document.onkeyup = function (event) {
         console.log("Guessed that")
         alert("Choose another letter! You already guessed that letter.")
     }
-
 };
 
 
