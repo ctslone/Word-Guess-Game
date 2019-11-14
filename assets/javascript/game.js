@@ -64,7 +64,7 @@ function newGame() {
     };
     // writing to the various HTML elements to display wins, guesses left and blank spaces for the new word
     document.getElementById("wins-text").innerHTML = "Wins: " + wins;
-    // document.getElementById("loss-text").innerHTML = "Losses: " + losses;
+    document.getElementById("losses-text").innerHTML = "Losses: " + losses;
     document.getElementById("guesses-left-text").innerHTML = "Guesses left: " + guessesLeft;
     document.getElementById("letters-text").innerHTML = [];
     document.getElementById("answer-space").innerHTML = answerSpace.join(" ");
@@ -121,7 +121,7 @@ document.onkeyup = function (event) {
         document.getElementById("letters-text").innerHTML = lettersGuessed;
         document.getElementById("guesses-left-text").innerHTML = "Guesses left: " + guessesLeft;
         document.getElementById("wins-text").innerHTML = "Wins: " + wins;
-        // document.getElementById("loss-text").innerHTML = "Losses: " + losses;
+        document.getElementById("losses-text").innerHTML = "Losses: " + losses;
     }
     else {
         console.log("Guessed that")
